@@ -35,6 +35,17 @@ class User {
 		}
 	}
 
+	public function update($fields = array(), $id = null) {
+
+		if(!$id && $this->isLoggedIn()) {
+			$id = $this->data()->id;
+		}
+
+		if(!$this->_db->update('users', $id, $fields)) {
+			throw new Exception('There was a problem updating.');
+		}
+	}
+
 	public function find($user = null) {
 		if($user) {
 			$field = (is_numeric($user)) ? 'id' : 'username'; // if user had a numeric username this FAILS...
