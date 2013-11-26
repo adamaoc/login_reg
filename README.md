@@ -34,7 +34,13 @@ Groups
 
 * id - int - primary - auto-inc  
 * name - varchar - 20  
-* permissions - text (json)  
+* permissions - text (json) 
+
+#### Group Data ####
+
+* id=1 / name= Standard user / permissions=
+* id=2 / name= Administrator / permissions= {"admin": 1} 
+
 
 Sessions (user_sessions)
 --------------
@@ -43,9 +49,3 @@ Sessions (user_sessions)
 * id - int - primary - auto-inc
 * user_id - int
 * hash - varchar - 50
-
-
-*** Group Data ***
-
-* id=1 / name= Standard user / permissions=
-* id=2 / name= Administrator / permissions= {"admin": 1}
