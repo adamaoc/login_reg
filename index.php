@@ -2,7 +2,13 @@
 require_once 'core/init.php';
 
 
-// DB::getInstance();
+$user = DB::getInstance()->get('users', array('username', '=', 'adam'));
+
+if(!$user->count()) {
+	echo 'NO User';
+} else {
+	echo $user->first()->username;
+}
 
 // flash a message if exists // 
 if(Session::exists('home')) {
@@ -10,8 +16,12 @@ if(Session::exists('home')) {
 }
 
 $user = new User();
+// echo '<pre>';
+// print_r($user);
+// echo '</pre>';
+
 if($user->isLoggedIn()) {
-	// echo 'Logged In';
+	echo 'Logged In';
 	?>
 		<p>Hello <a href="profile.php?user=<?php echo escape($user->data()->username); ?>">
 			<?php echo escape($user->data()->username); ?></a>!</p>
@@ -30,3 +40,5 @@ if($user->isLoggedIn()) {
 } else {
 	echo '<p>You need to <a href="login.php">login</a> or <a href="register.php">register</a>.</p>';
 }
+
+?>

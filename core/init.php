@@ -1,12 +1,13 @@
 <?php
+error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
 $GLOBALS['config'] = array(
     'mysql' => array(
-        'host' => '172.0.0.1',
+        'host' => 'localhost',
         'username' => 'root',
         'password' => 'root',
-        'db' => 'customer'
+        'db' => 'customers'
     ),
     'remember' => array(
         'cookie_name' => 'hash',
@@ -19,7 +20,7 @@ $GLOBALS['config'] = array(
 );
 
 spl_autoload_register(function($class) {
-    require_once 'classes/'.$class.'.php';    
+    require_once 'classes/' . $class . '.php';
 });
 
 require_once 'functions/sanitize.php';

@@ -5,7 +5,7 @@ class User {
 	private $_db,
 			$_data,
 			$_sessionName,
-			$_coockieName,
+			$_cookieName,
 			$_isLoggedIn;
 
 	public function __construct($user = null) {
@@ -48,7 +48,8 @@ class User {
 
 	public function find($user = null) {
 		if($user) {
-			$field = (is_numeric($user)) ? 'id' : 'username'; // if user had a numeric username this FAILS...
+			// if user had a numeric username this FAILS...
+			$field = (is_numeric($user)) ? 'id' : 'username'; 
 			$data = $this->_db->get('users', array($field, '=', $user));
 
 			if($data->count()) {
@@ -86,7 +87,7 @@ class User {
 							$hash = $hashCheck->first()->hash;
 						}
 
-						Cookie::put(this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
 					}
 					return true;
 				}
